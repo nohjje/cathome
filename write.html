@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>집사커뮤니티 - CATHOME</title>
-  <!-- CSS -->
+  <title>글쓰기 - CATHOME</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/board.css">
-  <!-- 파비콘 -->
+  <link rel="stylesheet" href="css/write.css">
   <link rel="icon" type="image/png" href="img/icon.png">
 </head>
 <body>
@@ -30,15 +28,11 @@
     헤더 (공통)
   =========================== -->
   <header class="header">
-    <!-- 헤더 상단 -->
     <div class="header__top">
       <div class="container">
-        <!-- 로고 -->
         <a href="index.html" class="header__logo">
           <span class="logo-cat">CAT</span><span class="logo-home">HOME</span>
         </a>
-
-        <!-- 검색바 -->
         <div class="header__search">
           <form class="search-form" onsubmit="return false;">
             <input type="text" placeholder="원하는 상품을 검색해보세요">
@@ -49,8 +43,6 @@
             </button>
           </form>
         </div>
-
-        <!-- 우측 아이콘 -->
         <div class="header__icons">
           <button class="header-icon-btn" aria-label="알림">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
@@ -59,7 +51,6 @@
             <span>알림</span>
           </button>
           <button class="header-icon-btn" aria-label="장바구니">
-            <span class="badge-count">3</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
             </svg>
@@ -79,8 +70,6 @@
         </div>
       </div>
     </div>
-
-    <!-- GNB -->
     <nav class="header__gnb">
       <div class="container">
         <ul class="gnb-list">
@@ -97,145 +86,58 @@
   </header>
 
   <!-- ===========================
-    게시판 메인
+    글쓰기 메인
   =========================== -->
-  <main class="board-main">
+  <main class="write-main">
     <div class="container">
 
       <!-- 페이지 타이틀 -->
       <div class="board-title-wrap">
-        <h1>집사커뮤니티</h1>
+        <h1>글쓰기</h1>
         <div class="title-line"></div>
       </div>
 
-      <!-- 검색 영역 -->
-      <div class="board-search-wrap">
-        <form class="board-search-form" onsubmit="return false;">
-          <input type="text" id="searchInput" placeholder="검색어를 입력해주세요.">
-          <button type="submit">검색</button>
-        </form>
-      </div>
+      <!-- 글쓰기 폼 -->
+      <form class="write-form" id="writeForm" onsubmit="return false;">
 
-      <!-- 글목록 상단: 글수 + 글쓰기 버튼 -->
-      <div class="board-list-header">
-        <p class="board-post-count">
-          전체 <span id="postCount">0</span>개의 글
-        </p>
-        <a href="write.html" class="write-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125" />
-          </svg>
-          글쓰기
-        </a>
-      </div>
+        <!-- 제목 -->
+        <div class="write-field">
+          <label for="writeTitle">제목</label>
+          <input type="text" id="writeTitle" placeholder="제목을 입력해주세요" maxlength="100">
+        </div>
 
-      <!-- 글목록 테이블 -->
-      <div class="board-table-wrap">
-        <table class="board-table">
-          <thead>
-            <tr>
-              <th class="col-num">번호</th>
-              <th class="col-title">제목</th>
-              <th class="col-author">작성자</th>
-              <th class="col-date">작성일</th>
-              <th class="col-views">조회수</th>
-            </tr>
-          </thead>
-          <tbody id="postList">
-            <!-- 더미 데이터 (Supabase 연동 전 미리보기용) -->
-            <tr>
-              <td>6</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  우리 고양이 사료 바꿨더니 털이 너무 윤기나요! 추천해드려요
-                  <span class="img-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                  </span>
-                </a>
-              </td>
-              <td>냥이집사</td>
-              <td>2026-03-25</td>
-              <td>1,234</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  캣타워 직접 만들어봤어요 - DIY 후기 및 완성사진 공유
-                  <span class="img-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                  </span>
-                </a>
-              </td>
-              <td>고양이아빠</td>
-              <td>2026-03-24</td>
-              <td>987</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  처음 고양이 입양하는 분들께 드리는 꿀팁 모음집
-                </a>
-              </td>
-              <td>삼색냥맘</td>
-              <td>2026-03-23</td>
-              <td>2,456</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  고양이 스트레스 해소에 좋은 장난감 TOP 5 비교 리뷰
-                  <span class="img-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                    </svg>
-                  </span>
-                </a>
-              </td>
-              <td>치치마마</td>
-              <td>2026-03-22</td>
-              <td>1,876</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  오늘 우리 고양이 건강검진 다녀왔어요
-                </a>
-              </td>
-              <td>뚱냥집사</td>
-              <td>2026-03-21</td>
-              <td>643</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td class="col-title">
-                <a href="post.html" class="post-title-link">
-                  CATHOME 집사커뮤니티에 오신 걸 환영합니다 🐱
-                </a>
-              </td>
-              <td>운영자</td>
-              <td>2026-03-20</td>
-              <td>3,012</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <!-- 내용 -->
+        <div class="write-field">
+          <label for="writeContent">내용</label>
+          <textarea id="writeContent" placeholder="내용을 입력해주세요" rows="14"></textarea>
+        </div>
 
-      <!-- 페이지네이션 -->
-      <div class="board-pagination">
-        <button class="page-btn arrow" disabled>‹</button>
-        <button class="page-btn active">1</button>
-        <button class="page-btn">2</button>
-        <button class="page-btn">3</button>
-        <button class="page-btn arrow">›</button>
-      </div>
+        <!-- 이미지 업로드 -->
+        <div class="write-field">
+          <label>이미지 첨부 <span class="write-label-sub">(선택, 1장)</span></label>
+          <div class="image-upload-wrap">
+            <input type="file" id="imageInput" accept="image/*" hidden>
+            <button type="button" class="image-upload-btn" id="imageUploadBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              이미지 선택
+            </button>
+            <!-- 이미지 미리보기 -->
+            <div class="image-preview-wrap" id="imagePreviewWrap" style="display:none;">
+              <img id="imagePreview" src="" alt="미리보기">
+              <button type="button" class="image-remove-btn" id="imageRemoveBtn" aria-label="이미지 삭제">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="write-actions">
+          <a href="board.html" class="write-cancel-btn">취소</a>
+          <button type="submit" class="write-submit-btn" id="writeSubmitBtn">등록</button>
+        </div>
+
+      </form>
 
     </div>
   </main>
@@ -272,12 +174,10 @@
           <span>상호명: 캐트홈(CATHOME)</span>
           <span>대표: 홍길동</span>
           <span>사업자등록번호: 123-45-67890</span>
-          <span>통신판매업신고: 2025-서울강남-1234</span>
         </p>
         <p>
           <span>주소: 서울특별시 강남구 테헤란로 123, 캐트홈빌딩 5층</span>
           <span>고객센터: 1588-0000</span>
-          <span>이메일: cs@cathome.kr</span>
         </p>
       </div>
       <div class="footer__bottom">
@@ -291,17 +191,10 @@
     </div>
   </footer>
 
-  <!-- 상단 스크롤 버튼 -->
-  <button class="scroll-top-btn" aria-label="상단으로 이동">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-    </svg>
-  </button>
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/board.js"></script>
+  <script src="js/write.js"></script>
 
 </body>
 </html>

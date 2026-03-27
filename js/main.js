@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRankingAccordion();
   initScrollEvents();
   initFadeIn();
+  initProfileHeader();
 });
 
 /* ===========================
@@ -183,4 +184,76 @@ function initFadeIn() {
   }, { threshold: 0.15 });
 
   targets.forEach(el => observer.observe(el));
+}
+
+
+/* ===========================
+   헤더 프로필 로그인 상태 연동
+=========================== */
+async function initProfileHeader() {
+  const profileBtn = document.getElementById('profileBtn');
+  const profileLabel = document.getElementById('profileLabel');
+  const profileDropdown = document.getElementById('profileDropdown');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (!profileBtn) return;
+
+  // supabaseClient가 없으면 로그인 페이지 링크로만 동작
+  if (typeof supabaseClient === 'undefined') {
+    profileBtn.addEventListener('click', () => {
+      window.location.href = 'login.html';
+    });
+    return;
+  }
+
+  // 현재 세션 확인
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  updateProfileUI(session);
+
+  // 프로필 버튼 클릭
+  profileBtn.addEventListener('click', () => {
+    if (profileDropdown.classList.contains('open')) {
+      profileDropdown.classList.remove('open');
+    } else if (profileLabel.textContent === '프로필') {
+      // 비로그인 → 로그인 페이지 이동
+      window.location.href = 'login.html';
+    } else {
+      // 로그인 상태 → 드롭다운 열기
+      profileDropdown.classList.add('open');
+    }
+  });
+
+  // 드롭다운 외부 클릭 시 닫기
+  document.addEventListener('click', (e) => {
+    if (!profileBtn.closest('.header-profile-wrap').contains(e.target)) {
+      profileDropdown.classList.remove('open');
+    }
+  });
+
+  // 로그아웃 버튼
+  logoutBtn?.addEventListener('click', async () => {
+    await supabaseClient.auth.signOut();
+    profileLabel.textContent = '프로필';
+    profileDropdown.classList.remove('open');
+    window.location.href = 'index.html';
+  });
+
+  // auth 상태 변경 감지
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+    updateProfileUI(session);
+  });
+}
+
+// 로그인 상태에 따라 프로필 UI 업데이트
+function updateProfileUI(session) {
+  const profileLabel = document.getElementById('profileLabel');
+  if (!profileLabel) return;
+
+  if (session?.user) {
+    // 이메일 앞자리(@앞)를 아이디로 표시
+    const username = session.user.email.split('@')[0];
+    profileLabel.textContent = username;
+  } else {
+    profileLabel.textContent = '프로필';
+  }
 }

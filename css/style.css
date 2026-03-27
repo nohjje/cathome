@@ -149,6 +149,44 @@
   color: var(--color-main);
 }
 
+/* 프로필 드롭다운 */
+.header-profile-wrap {
+  position: relative;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  min-width: 110px;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.profile-dropdown.open {
+  display: block;
+}
+
+.profile-dropdown button {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  text-align: left;
+  background: none;
+  cursor: pointer;
+}
+
+.profile-dropdown button:hover {
+  background-color: var(--color-bg);
+  color: var(--color-main);
+}
+
 .header-icon-btn .badge-count {
   position: absolute;
   top: -4px;
