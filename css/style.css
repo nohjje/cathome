@@ -172,6 +172,7 @@
 .gnb-list {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .gnb-list li a {
