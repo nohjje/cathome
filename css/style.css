@@ -83,10 +83,12 @@
 .search-form {
   display: flex;
   height: 48px;
-  border: 2px solid var(--color-main);
   border-radius: var(--radius-full);
   overflow: hidden;
-  background-color: var(--color-white);
+  /* border 대신 box-shadow로 외곽선 처리 — 내부 공간을 침범하지 않음 */
+  box-shadow: 0 0 0 2px var(--color-main);
+  /* 폼 배경을 주황으로 설정해 곡선 모서리 틈을 완전히 채움 */
+  background-color: var(--color-main);
 }
 
 .search-form input {
@@ -95,7 +97,7 @@
   padding: 0 20px;
   font-size: var(--font-size-sm);
   color: var(--color-text);
-  background: transparent;
+  background-color: var(--color-white);
 }
 
 .search-form input::placeholder {
