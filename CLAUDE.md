@@ -170,8 +170,8 @@
 ### 단계별 진행
 
 #### 1단계: 게시판 UI
-- [ ] board.html 구조 + board.css 스타일
-- [ ] index.html GNB 링크 연결
+- [x] board.html 구조 + board.css 스타일 (2026-03-27)
+- [x] index.html GNB 링크 연결 (2026-03-27)
 - [ ] 디자인 수정·보완
 
 #### 2단계: Supabase 기본 설정

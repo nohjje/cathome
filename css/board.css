@@ -1,0 +1,287 @@
+/* ===========================
+   Board CSS - 게시판 전용 스타일
+=========================== */
+
+/* ===========================
+   게시판 공통 레이아웃
+=========================== */
+.board-main {
+  min-height: calc(100vh - 200px);
+  padding: 60px 0 80px;
+  background-color: var(--color-white);
+}
+
+/* ===========================
+   페이지 타이틀
+=========================== */
+.board-title-wrap {
+  margin-bottom: 40px;
+}
+
+.board-title-wrap h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.board-title-wrap .title-line {
+  width: 48px;
+  height: 3px;
+  background-color: var(--color-main);
+  border-radius: 2px;
+}
+
+/* ===========================
+   검색 영역
+=========================== */
+.board-search-wrap {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.board-search-form {
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-white);
+}
+
+.board-search-form input {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  background: transparent;
+}
+
+.board-search-form input::placeholder {
+  color: var(--color-text-light);
+}
+
+.board-search-form button {
+  padding: 12px 28px;
+  background-color: var(--color-text);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: background-color var(--transition);
+  flex-shrink: 0;
+}
+
+.board-search-form button:hover {
+  background-color: var(--color-main);
+}
+
+/* ===========================
+   글목록 상단 (글수 + 글쓰기 버튼)
+=========================== */
+.board-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.board-post-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+}
+
+.board-post-count span {
+  color: var(--color-main);
+  font-weight: 700;
+}
+
+.write-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background-color: var(--color-main);
+  color: var(--color-white);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition);
+  text-decoration: none;
+}
+
+.write-btn:hover {
+  background-color: #e56100;
+}
+
+.write-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===========================
+   글목록 테이블
+=========================== */
+.board-table-wrap {
+  border-top: 2px solid var(--color-text);
+  margin-bottom: 32px;
+}
+
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 테이블 헤더 */
+.board-table thead th {
+  padding: 14px 16px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-sub);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.board-table thead th.col-title {
+  text-align: left;
+}
+
+/* 테이블 본문 */
+.board-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color var(--transition);
+}
+
+.board-table tbody tr:hover {
+  background-color: #fff8f4;
+}
+
+.board-table tbody td {
+  padding: 16px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* 번호 컬럼 */
+.col-num {
+  width: 70px;
+}
+
+/* 제목 컬럼 */
+.col-title {
+  text-align: left !important;
+}
+
+.post-title-link {
+  color: var(--color-text);
+  font-weight: 500;
+  transition: color var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.post-title-link:hover {
+  color: var(--color-main);
+}
+
+/* 이미지 첨부 아이콘 */
+.img-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-point);
+}
+
+.img-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* 작성자 */
+.col-author {
+  width: 110px;
+}
+
+/* 작성일 */
+.col-date {
+  width: 110px;
+}
+
+/* 조회수 */
+.col-views {
+  width: 80px;
+}
+
+/* 데이터 없을 때 */
+.board-empty {
+  text-align: center;
+  padding: 80px 0;
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
+
+.board-empty svg {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  color: var(--color-border);
+  display: block;
+}
+
+/* ===========================
+   페이지네이션
+=========================== */
+.board-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  border: 1.5px solid var(--color-border);
+  background-color: var(--color-white);
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.page-btn:hover {
+  border-color: var(--color-main);
+  color: var(--color-main);
+}
+
+.page-btn.active {
+  background-color: var(--color-main);
+  border-color: var(--color-main);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.page-btn.arrow {
+  font-size: 16px;
+}
+
+.page-btn:disabled,
+.page-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
