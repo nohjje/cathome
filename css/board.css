@@ -154,7 +154,7 @@
 }
 
 .board-table thead th.col-title {
-  text-align: left;
+  text-align: center;
 }
 
 /* 테이블 본문 */
