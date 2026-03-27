@@ -48,6 +48,7 @@
 
 .board-search-form {
   display: flex;
+  height: 52px;
   width: 100%;
   max-width: 640px;
   border: 1.5px solid var(--color-border);
@@ -58,7 +59,8 @@
 
 .board-search-form input {
   flex: 1;
-  padding: 12px 20px;
+  height: 100%;
+  padding: 0 20px;
   font-size: var(--font-size-sm);
   color: var(--color-text);
   background: transparent;
@@ -69,7 +71,8 @@
 }
 
 .board-search-form button {
-  padding: 12px 28px;
+  height: 100%;
+  padding: 0 32px;
   background-color: var(--color-text);
   color: var(--color-white);
   font-size: var(--font-size-sm);
