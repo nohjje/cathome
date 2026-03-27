@@ -720,14 +720,38 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: #333;
-  color: #aaa;
+  color: var(--color-white);
   transition: all var(--transition);
 }
 
-.footer__sns a:hover {
-  background-color: var(--color-main);
-  color: var(--color-white);
+/* 인스타그램 - 그라디언트 */
+.footer__sns a.sns-instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.footer__sns a.sns-instagram:hover {
+  opacity: 0.85;
+  transform: scale(1.1);
+}
+
+/* 유튜브 - 빨강 */
+.footer__sns a.sns-youtube {
+  background-color: #FF0000;
+}
+
+.footer__sns a.sns-youtube:hover {
+  background-color: #cc0000;
+  transform: scale(1.1);
+}
+
+/* 네이버 블로그 - 초록 */
+.footer__sns a.sns-blog {
+  background-color: #03C75A;
+}
+
+.footer__sns a.sns-blog:hover {
+  background-color: #02a84b;
+  transform: scale(1.1);
 }
 
 .footer__sns a svg {
