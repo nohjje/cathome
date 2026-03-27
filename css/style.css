@@ -82,7 +82,7 @@
 
 .search-form {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   border: 2px solid var(--color-main);
   border-radius: var(--radius-full);
   overflow: hidden;
@@ -94,6 +94,7 @@
   padding: 10px 20px;
   font-size: var(--font-size-sm);
   color: var(--color-text);
+  background: transparent;
 }
 
 .search-form input::placeholder {
@@ -101,11 +102,13 @@
 }
 
 .search-form button {
-  padding: 10px 18px;
+  padding: 0 20px;
   background-color: var(--color-main);
   color: var(--color-white);
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .search-form button svg {
