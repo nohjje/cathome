@@ -16,6 +16,7 @@
 =========================== */
 .board-title-wrap {
   margin-bottom: 40px;
+  text-align: center;
 }
 
 .board-title-wrap h1 {
@@ -29,6 +30,7 @@
   width: 48px;
   height: 3px;
   background-color: var(--color-main);
+  margin: 0 auto;
   border-radius: 2px;
 }
 
@@ -64,6 +66,7 @@
   font-size: var(--font-size-sm);
   color: var(--color-text);
   background: transparent;
+  text-align: center;
 }
 
 .board-search-form input::placeholder {
@@ -153,9 +156,6 @@
   white-space: nowrap;
 }
 
-.board-table thead th.col-title {
-  text-align: center;
-}
 
 /* 테이블 본문 */
 .board-table tbody tr {
@@ -182,7 +182,7 @@
 
 /* 제목 컬럼 */
 .col-title {
-  text-align: left !important;
+  text-align: center;
 }
 
 .post-title-link {
