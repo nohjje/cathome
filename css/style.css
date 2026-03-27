@@ -245,7 +245,7 @@
 .slider-counter {
   position: absolute;
   bottom: 24px;
-  left: 40px;
+  right: 40px;
   color: var(--color-white);
   font-size: var(--font-size-sm);
   font-weight: 600;
