@@ -763,11 +763,13 @@
   font-size: var(--font-size-xs);
   line-height: 2;
   margin-bottom: var(--spacing-lg);
+  text-align: center;
 }
 
 .footer__info p {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 4px 16px;
 }
 
