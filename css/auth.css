@@ -156,11 +156,11 @@
 }
 
 .auth-submit-btn:hover {
-  background-color: #A8573F;
+  background-color: #8A5040;
 }
 
 .auth-submit-btn:active {
-  background-color: #8F4A34;
+  background-color: #743F32;
 }
 
 /* 로딩 상태 */

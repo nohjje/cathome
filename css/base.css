@@ -10,17 +10,17 @@
 =========================== */
 :root {
   /* 색상 */
-  --color-main: #C1694F;
-  --color-main-2: #D4927E;
-  --color-main-3: #F0D5CC;
-  --color-point: #6B8F71;
-  --color-point-2: #9AB89F;
-  --color-point-3: #D6EBD9;
+  --color-main: #A0614A;
+  --color-main-2: #C08575;
+  --color-main-3: #EDD5CC;
+  --color-point: #3CBCB0;
+  --color-point-2: #7DD4CE;
+  --color-point-3: #C8EDEB;
   --color-text: #111111;
   --color-text-sub: #555555;
   --color-text-light: #888888;
-  --color-border: #E8E4E0;
-  --color-bg: #FAF8F5;
+  --color-border: #E8E2DE;
+  --color-bg: #FAF8F6;
   --color-white: #FFFFFF;
 
   /* 폰트 */
@@ -128,11 +128,11 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #A8573F;
+  background-color: #8A5040;
 }
 
 .btn-primary:active {
-  background-color: #8F4A34;
+  background-color: #743F32;
 }
 
 .btn-outline {
