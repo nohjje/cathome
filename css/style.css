@@ -98,6 +98,7 @@
   font-size: var(--font-size-sm);
   color: var(--color-text);
   background-color: var(--color-white);
+  text-align: center;
 }
 
 .search-form input::placeholder {
