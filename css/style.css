@@ -264,6 +264,7 @@
 /* 탭 버튼 */
 .category-tabs {
   display: flex;
+  justify-content: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
 }
@@ -279,18 +280,24 @@
   border: 1.5px solid var(--color-border);
 }
 
-.tab-btn.active,
-.tab-btn:hover {
+/* active 탭은 주황 유지, hover는 별도 색상으로 구분 */
+.tab-btn.active {
   background-color: var(--color-main);
   color: var(--color-white);
   border-color: var(--color-main);
+}
+
+.tab-btn:not(.active):hover {
+  background-color: var(--color-main-3);
+  color: var(--color-main);
+  border-color: var(--color-main-2);
 }
 
 /* 아이콘 그리드 */
 .category-grid {
   display: none;
   grid-template-columns: repeat(8, 1fr);
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
 }
 
 .category-grid.active {
@@ -301,7 +308,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 10px;
   cursor: pointer;
   transition: transform var(--transition);
 }
@@ -311,8 +318,8 @@
 }
 
 .category-item__icon {
-  width: 72px;
-  height: 72px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   background-color: var(--color-main-3);
   display: flex;
@@ -327,20 +334,20 @@
 }
 
 .category-item__icon img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
 }
 
 .category-item__name {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   color: var(--color-text);
   text-align: center;
 }
 
 .category-item__count {
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   color: var(--color-text-light);
 }
 
