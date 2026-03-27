@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATHOME — Wire Frame</title>
+  <style>
+
+    /* ===========================
+       기본 리셋
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e9e9e9;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ===========================
+       최상단 타이틀
+    =========================== */
+    .wf-page-title {
+      text-align: center;
+      padding: 28px 0 10px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #444;
+    }
+
+    .wf-page-title span {
+      display: block;
+      font-size: 10px;
+      font-weight: normal;
+      color: #999;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ===========================
+       페이지 래퍼 (좌측 레이블 + 본문 + 우측 주석)
+    =========================== */
+    .wf-outer {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1160px;
+      margin: 0 auto 60px;
+      gap: 0;
+    }
+
+    /* 좌측 섹션 레이블 */
+    .wf-side-left {
+      width: 80px;
+      flex-shrink: 0;
+      padding-top: 0;
+    }
+
+    .side-label {
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: right;
+      padding-right: 12px;
+      line-height: 1;
+    }
+
+    /* 우측 주석 */
+    .wf-side-right {
+      width: 140px;
+      flex-shrink: 0;
+      padding-top: 0;
+    }
+
+    .side-note {
+      font-size: 9px;
+      color: #aaa;
+      line-height: 1.6;
+      padding-left: 12px;
+      border-left: 1px dashed #ccc;
+    }
+
+    /* 본문 프레임 */
+    .wf-frame {
+      flex: 1;
+      border: 1.5px solid #bbb;
+      background: #fff;
+    }
+
+    /* ===========================
+       공통 유틸
+    =========================== */
+
+    /* 이미지 플레이스홀더 (X선 박스) */
+    .ph {
+      background: #e8e8e8;
+      border: 1.5px solid #c8c8c8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ph::before, .ph::after {
+      content: '';
+      position: absolute;
+      background: #c5c5c5;
+      height: 1px;
+      width: 142%;
+      left: -21%;
+      top: 50%;
+    }
+
+    .ph::before { transform: rotate(var(--a, 30deg)); }
+    .ph::after  { transform: rotate(calc(-1 * var(--a, 30deg))); }
+
+    /* 텍스트 줄 */
+    .line {
+      height: 10px;
+      background: #ddd;
+      border-radius: 1px;
+    }
+
+    .line.dark  { background: #bbb; }
+    .line.light { background: #e8e8e8; }
+    .line.sm    { height: 8px; }
+    .line.lg    { height: 13px; }
+
+    /* 버튼 */
+    .wf-btn {
+      display: inline-block;
+      border: 1.5px solid #aaa;
+      background: #e0e0e0;
+      font-size: 10px;
+      color: #888;
+      padding: 5px 14px;
+      border-radius: 2px;
+    }
+
+    .wf-btn.solid {
+      background: #bbb;
+      color: #fff;
+      border-color: #bbb;
+    }
+
+    /* 더보기 링크 */
+    .more {
+      font-size: 10px;
+      color: #bbb;
+      border: 1px solid #ddd;
+      padding: 3px 10px;
+      border-radius: 10px;
+    }
+
+    /* 섹션 헤더 (타이틀 + 더보기) */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .sec-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #666;
+      border-left: 3px solid #bbb;
+      padding-left: 8px;
+    }
+
+    /* 구분선 */
+    .divider {
+      border: none;
+      border-top: 1.5px dashed #ddd;
+    }
+
+    /* ===========================
+       1. 상단 띠배너
+    =========================== */
+    .top-banner {
+      background: #e0e0e0;
+      border-bottom: 1.5px solid #ccc;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .top-banner .line { width: 160px; margin: 0; }
+    .top-banner .arr {
+      width: 12px; height: 8px;
+      background: #bbb; border-radius: 1px;
+    }
+
+    /* ===========================
+       2. 헤더
+    =========================== */
+    .header {
+      padding: 18px 32px 0;
+      border-bottom: 1.5px solid #ddd;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 14px;
+    }
+
+    /* 로고 */
+    .wf-logo {
+      border: 1.5px solid #bbb;
+      background: #f0f0f0;
+      font-size: 15px;
+      font-weight: 900;
+      color: #aaa;
+      letter-spacing: -1px;
+      padding: 8px 16px;
+      flex-shrink: 0;
+    }
+
+    /* 검색바 */
+    .wf-search {
+      flex: 1;
+      height: 38px;
+      border: 1.5px solid #bbb;
+      background: #f8f8f8;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+    }
+
+    .wf-search .line { flex: 1; margin: 0; }
+
+    .search-icon {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #ccc;
+      flex-shrink: 0;
+    }
+
+    /* 헤더 아이콘 */
+    .header-icons {
+      display: flex;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .h-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .h-icon .circle {
+      width: 26px; height: 26px;
+      border: 1.5px solid #bbb;
+      border-radius: 50%;
+      background: #ececec;
+    }
+
+    .h-icon .lbl {
+      font-size: 8px;
+      color: #bbb;
+    }
+
+    /* GNB */
+    .gnb {
+      display: flex;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .gnb-item {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 10px;
+      color: #999;
+      border-right: 1px solid #ebebeb;
+    }
+
+    .gnb-item:last-child { border-right: none; }
+    .gnb-item.on { font-weight: bold; color: #666; background: #f5f5f5; }
+
+    /* ===========================
+       3. 히어로 슬라이더
+    =========================== */
+    .hero {
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 400px;
+    }
+
+    /* 화살표 */
+    .hero-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border: 1.5px solid #bbb;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #aaa;
+    }
+
+    .hero-btn.l { left: 20px; }
+    .hero-btn.r { right: 20px; }
+
+    /* 카운터 */
+    .hero-count {
+      position: absolute;
+      bottom: 18px;
+      left: 32px;
+      background: rgba(0,0,0,0.2);
+      color: #eee;
+      font-size: 10px;
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    /* ===========================
+       4. 카테고리 탭 + 아이콘 그리드
+    =========================== */
+    .category-sec {
+      padding: 36px 32px;
+      border-bottom: 1.5px dashed #e0e0e0;
+    }
+
+    /* 탭 버튼 */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tab {
+      padding: 6px 22px;
+      border: 1.5px solid #ccc;
+      background: #f2f2f2;
+      font-size: 10px;
+      color: #999;
+      border-radius: 20px;
+    }
+
+    .tab.on {
+      background: #bbb;
+      color: #fff;
+      border-color: #bbb;
+    }
+
+    /* 아이콘 그리드: 4열 × 2행 */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px 16px;
+    }
+
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cat-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid #ccc;
+      background: #ebebeb;
+    }
+
+    .cat-name  { width: 52px; height: 9px; background: #d8d8d8; border-radius: 1px; }
+    .cat-count { width: 36px; height: 7px; background: #e8e8e8; border-radius: 1px; }
+
+    /* ===========================
+       5. 핫딜 섹션
+    =========================== */
+    .hotdeal-sec {
+      padding: 36px 32px;
+      background: #f7f7f7;
+      border-bottom: 1.5px dashed #e0e0e0;
+    }
+
+    /* 상품 그리드: 4열 */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .prod-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .prod-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+
+    /* 뱃지 영역 */
+    .badges {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .badge {
+      width: 26px; height: 13px;
+      background: #bbb;
+      border-radius: 1px;
+    }
+
+    .prod-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* ===========================
+       6. 신상품 섹션
+    =========================== */
+    .new-sec {
+      padding: 36px 32px;
+      border-bottom: 1.5px dashed #e0e0e0;
+    }
+
+    /* ===========================
+       7. 나캣랭킹 섹션
+    =========================== */
+    .rank-sec {
+      padding: 36px 32px;
+      background: #f7f7f7;
+      border-bottom: 1.5px dashed #e0e0e0;
+    }
+
+    /* 필터 탭 */
+    .rank-filters {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .rank-filter {
+      font-size: 10px;
+      color: #aaa;
+      border: 1px solid #ddd;
+      padding: 3px 12px;
+      border-radius: 2px;
+      background: #f0f0f0;
+    }
+
+    .rank-filter.on {
+      background: #ccc;
+      color: #fff;
+      border-color: #ccc;
+    }
+
+    /* 랭킹 리스트 */
+    .rank-list {
+      border: 1.5px solid #ddd;
+      border-radius: 3px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .rank-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 18px;
+      border-bottom: 1px solid #efefef;
+    }
+
+    .rank-row:last-child { border-bottom: none; }
+
+    /* 1위 펼침 row */
+    .rank-row.open { background: #f3f3f3; }
+
+    .rank-num {
+      font-size: 17px;
+      font-weight: 900;
+      min-width: 24px;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .rank-num.top3 { color: #999; }
+
+    .rank-thumb {
+      width: 50px; height: 50px;
+      border: 1.5px solid #ddd;
+      background: #e8e8e8;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .rank-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .rank-price {
+      width: 60px; height: 10px;
+      background: #ccc;
+      border-radius: 1px;
+    }
+
+    .rank-arr {
+      width: 18px; height: 18px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #bbb;
+    }
+
+    /* 어코디언 상세 (1위 펼침) */
+    .rank-detail {
+      display: flex;
+      gap: 16px;
+      padding: 14px 18px 14px 56px;
+      background: #efefef;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .rank-detail-img {
+      width: 110px; height: 110px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .rank-detail-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    /* ===========================
+       8. 집사 커뮤니티 섹션
+    =========================== */
+    .comm-sec {
+      padding: 36px 32px;
+      border-bottom: 1.5px dashed #e0e0e0;
+    }
+
+    .comm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .comm-card {
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .comm-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+
+    .comm-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* ===========================
+       9. 하단 배너 (3분할)
+    =========================== */
+    .bot-banner {
+      background: #d8d8d8;
+      border-bottom: 1.5px solid #ccc;
+    }
+
+    .bot-banner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bot-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 26px 16px;
+      border-right: 1px solid #c8c8c8;
+    }
+
+    .bot-item:last-child { border-right: none; }
+
+    .bot-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #c0c0c0;
+      border: 1.5px solid #bbb;
+      flex-shrink: 0;
+    }
+
+    .bot-text {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* ===========================
+       10. 푸터
+    =========================== */
+    .footer {
+      background: #e0e0e0;
+      padding: 32px 32px 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 14px;
+    }
+
+    .footer-sns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .sns-c {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: #ccc;
+      border: 1.5px solid #bbb;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #ccc;
+      padding-top: 12px;
+    }
+
+    .policy-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    /* ===========================
+       플로팅 버튼
+    =========================== */
+    .float-wrap {
+      position: fixed;
+      bottom: 32px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .float-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #bbb;
+      background: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #999;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 페이지 타이틀 -->
+  <div class="wf-page-title">
+    WIRE FRAME
+    <span>(PC)</span>
+  </div>
+
+  <div class="wf-outer">
+
+    <!-- ===========================
+      좌측 섹션 레이블 컬럼
+    =========================== -->
+    <div class="wf-side-left">
+
+      <!-- 띠배너 높이 맞춤 -->
+      <div style="height:36px; display:flex; align-items:center;">
+        <div class="side-label">Top<br>Banner</div>
+      </div>
+
+      <!-- 헤더 높이 맞춤 -->
+      <div style="height:118px; display:flex; align-items:center;">
+        <div class="side-label">Header</div>
+      </div>
+
+      <!-- 히어로 -->
+      <div style="height:400px; display:flex; align-items:center;">
+        <div class="side-label">Hero<br>Slider</div>
+      </div>
+
+      <!-- 카테고리 -->
+      <div style="height:244px; display:flex; align-items:center;">
+        <div class="side-label">Category</div>
+      </div>
+
+      <!-- 핫딜 -->
+      <div style="height:296px; display:flex; align-items:center;">
+        <div class="side-label">Hot Deal</div>
+      </div>
+
+      <!-- 신상품 -->
+      <div style="height:296px; display:flex; align-items:center;">
+        <div class="side-label">New</div>
+      </div>
+
+      <!-- 랭킹 -->
+      <div style="height:630px; display:flex; align-items:center;">
+        <div class="side-label">Ranking</div>
+      </div>
+
+      <!-- 커뮤니티 -->
+      <div style="height:420px; display:flex; align-items:center;">
+        <div class="side-label">Community</div>
+      </div>
+
+      <!-- 하단배너 -->
+      <div style="height:92px; display:flex; align-items:center;">
+        <div class="side-label">Bottom<br>Banner</div>
+      </div>
+
+      <!-- 푸터 -->
+      <div style="height:160px; display:flex; align-items:center;">
+        <div class="side-label">Footer</div>
+      </div>
+
+    </div>
+
+    <!-- ===========================
+      본문 프레임
+    =========================== -->
+    <div class="wf-frame">
+
+      <!-- 1. 상단 띠배너 -->
+      <div class="top-banner">
+        <div class="line" style="width:140px; margin:0;"></div>
+        <div class="arr"></div>
+      </div>
+
+      <!-- 2. 헤더 -->
+      <div class="header">
+        <div class="header-row">
+          <div class="wf-logo">CATHOME</div>
+          <div class="wf-search">
+            <div class="line" style="margin:0;"></div>
+            <div class="search-icon"></div>
+          </div>
+          <div class="header-icons">
+            <div class="h-icon">
+              <div class="circle"></div>
+              <span class="lbl">알림</span>
+            </div>
+            <div class="h-icon">
+              <div class="circle"></div>
+              <span class="lbl">장바구니</span>
+            </div>
+            <div class="h-icon">
+              <div class="circle"></div>
+              <span class="lbl">프로필</span>
+            </div>
+          </div>
+        </div>
+        <div class="gnb">
+          <div class="gnb-item on">카테고리</div>
+          <div class="gnb-item">핫딜</div>
+          <div class="gnb-item">신상품</div>
+          <div class="gnb-item">랭킹</div>
+          <div class="gnb-item">이벤트</div>
+          <div class="gnb-item">체험단</div>
+          <div class="gnb-item">집사커뮤니티</div>
+        </div>
+      </div>
+
+      <!-- 3. 히어로 슬라이더 -->
+      <div class="hero">
+        <div class="ph hero-img" style="--a:22deg;"></div>
+        <div class="hero-btn l">‹</div>
+        <div class="hero-btn r">›</div>
+        <div class="hero-count">1 / 4</div>
+      </div>
+
+      <!-- 4. 카테고리 탭 + 아이콘 그리드 (4열 × 2행) -->
+      <div class="category-sec">
+        <div class="sec-head">
+          <div class="tabs">
+            <div class="tab on">사료</div>
+            <div class="tab">간식</div>
+            <div class="tab">용품</div>
+          </div>
+          <div class="more">더보기 ›</div>
+        </div>
+
+        <div class="cat-grid">
+          <!-- 4열 × 2행 = 8개 -->
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+          <div class="cat-item">
+            <div class="cat-icon"></div>
+            <div class="cat-name"></div>
+            <div class="cat-count"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 핫딜 섹션 -->
+      <div class="hotdeal-sec">
+        <div class="sec-head">
+          <div class="sec-title">핫딜</div>
+          <div class="more">더보기 ›</div>
+        </div>
+        <div class="prod-grid">
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div><div class="badge"></div></div>
+              <div class="line" style="width:90%;"></div>
+              <div class="line" style="width:60%;" class="dark"></div>
+              <div class="line sm" style="width:45%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div></div>
+              <div class="line" style="width:88%;"></div>
+              <div class="line" style="width:55%;" class="dark"></div>
+              <div class="line sm" style="width:45%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div><div class="badge"></div></div>
+              <div class="line" style="width:85%;"></div>
+              <div class="line" style="width:58%;" class="dark"></div>
+              <div class="line sm" style="width:45%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div></div>
+              <div class="line" style="width:90%;"></div>
+              <div class="line" style="width:62%;" class="dark"></div>
+              <div class="line sm" style="width:45%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 신상품 섹션 -->
+      <div class="new-sec">
+        <div class="sec-head">
+          <div class="sec-title">신상품</div>
+          <div class="more">더보기 ›</div>
+        </div>
+        <div class="prod-grid">
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div></div>
+              <div class="line" style="width:88%;"></div>
+              <div class="line" style="width:50%;background:#ccc;"></div>
+              <div class="line sm" style="width:40%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div></div>
+              <div class="line" style="width:85%;"></div>
+              <div class="line" style="width:50%;background:#ccc;"></div>
+              <div class="line sm" style="width:40%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div></div>
+              <div class="line" style="width:90%;"></div>
+              <div class="line" style="width:50%;background:#ccc;"></div>
+              <div class="line sm" style="width:40%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+          <div class="prod-card">
+            <div class="ph prod-img" style="--a:38deg;"></div>
+            <div class="prod-info">
+              <div class="badges"><div class="badge"></div><div class="badge"></div></div>
+              <div class="line" style="width:87%;"></div>
+              <div class="line" style="width:50%;background:#ccc;"></div>
+              <div class="line sm" style="width:40%;background:#e0e0e0;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. 나캣랭킹 섹션 -->
+      <div class="rank-sec">
+        <div class="sec-head">
+          <div class="sec-title">나캣랭킹</div>
+          <div class="rank-filters">
+            <div class="rank-filter on">전체</div>
+            <div class="rank-filter">사료</div>
+            <div class="rank-filter">간식</div>
+            <div class="rank-filter">용품</div>
+          </div>
+        </div>
+
+        <div class="rank-list">
+
+          <!-- 1위: 어코디언 펼침 -->
+          <div class="rank-row open">
+            <div class="rank-num top3">1</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:55%;"></div>
+              <div class="line sm" style="width:28%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∧</div>
+          </div>
+          <!-- 1위 펼침 상세 -->
+          <div class="rank-detail">
+            <div class="ph rank-detail-img" style="--a:32deg;"></div>
+            <div class="rank-detail-info">
+              <div class="line lg" style="width:180px;background:#ccc;"></div>
+              <div class="line sm" style="width:80px;background:#ddd;"></div>
+              <div class="line" style="width:100px;background:#bbb;height:14px;"></div>
+              <div class="wf-btn solid" style="margin-top:4px; font-size:9px;">장바구니 담기</div>
+            </div>
+          </div>
+
+          <!-- 2~10위 -->
+          <div class="rank-row">
+            <div class="rank-num top3">2</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:52%;"></div>
+              <div class="line sm" style="width:28%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num top3">3</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:58%;"></div>
+              <div class="line sm" style="width:25%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">4</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:56%;"></div>
+              <div class="line sm" style="width:27%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">5</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:60%;"></div>
+              <div class="line sm" style="width:26%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">6</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:54%;"></div>
+              <div class="line sm" style="width:28%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">7</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:58%;"></div>
+              <div class="line sm" style="width:25%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">8</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:55%;"></div>
+              <div class="line sm" style="width:27%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">9</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:60%;"></div>
+              <div class="line sm" style="width:26%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+          <div class="rank-row">
+            <div class="rank-num">10</div>
+            <div class="rank-thumb"></div>
+            <div class="rank-info">
+              <div class="line" style="width:57%;"></div>
+              <div class="line sm" style="width:25%;background:#ccc;"></div>
+            </div>
+            <div class="rank-price"></div>
+            <div class="rank-arr">∨</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 8. 집사 커뮤니티 섹션 -->
+      <div class="comm-sec">
+        <div class="sec-head">
+          <div class="sec-title">집사커뮤니티</div>
+          <div class="more">더보기 ›</div>
+        </div>
+        <div class="comm-grid">
+          <div class="comm-card">
+            <div class="ph comm-thumb" style="--a:22deg;"></div>
+            <div class="comm-body">
+              <div class="line lg" style="width:88%;"></div>
+              <div class="line" style="width:65%;"></div>
+              <div class="line sm" style="width:50%;background:#e0e0e0;margin-top:2px;"></div>
+            </div>
+          </div>
+          <div class="comm-card">
+            <div class="ph comm-thumb" style="--a:22deg;"></div>
+            <div class="comm-body">
+              <div class="line lg" style="width:85%;"></div>
+              <div class="line" style="width:70%;"></div>
+              <div class="line sm" style="width:50%;background:#e0e0e0;margin-top:2px;"></div>
+            </div>
+          </div>
+          <div class="comm-card">
+            <div class="ph comm-thumb" style="--a:22deg;"></div>
+            <div class="comm-body">
+              <div class="line lg" style="width:90%;"></div>
+              <div class="line" style="width:60%;"></div>
+              <div class="line sm" style="width:50%;background:#e0e0e0;margin-top:2px;"></div>
+            </div>
+          </div>
+          <div class="comm-card">
+            <div class="ph comm-thumb" style="--a:22deg;"></div>
+            <div class="comm-body">
+              <div class="line lg" style="width:82%;"></div>
+              <div class="line" style="width:68%;"></div>
+              <div class="line sm" style="width:50%;background:#e0e0e0;margin-top:2px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. 하단 배너 (3분할) -->
+      <div class="bot-banner">
+        <div class="bot-banner-grid">
+          <div class="bot-item">
+            <div class="bot-icon"></div>
+            <div class="bot-text">
+              <div class="line" style="width:110px;height:12px;background:#bbb;margin:0;"></div>
+              <div class="line sm" style="width:85px;background:#ccc;margin:0;"></div>
+            </div>
+          </div>
+          <div class="bot-item">
+            <div class="bot-icon"></div>
+            <div class="bot-text">
+              <div class="line" style="width:100px;height:12px;background:#bbb;margin:0;"></div>
+              <div class="line sm" style="width:90px;background:#ccc;margin:0;"></div>
+            </div>
+          </div>
+          <div class="bot-item">
+            <div class="bot-icon"></div>
+            <div class="bot-text">
+              <div class="line" style="width:115px;height:12px;background:#bbb;margin:0;"></div>
+              <div class="line sm" style="width:80px;background:#ccc;margin:0;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. 푸터 -->
+      <div class="footer">
+        <div class="footer-top">
+          <div class="wf-logo" style="font-size:13px;padding:6px 12px;">CATHOME</div>
+          <div class="footer-sns">
+            <div class="sns-c"></div>
+            <div class="sns-c"></div>
+            <div class="sns-c"></div>
+          </div>
+        </div>
+        <div class="footer-info">
+          <div class="line" style="width:68%;background:#ccc;"></div>
+          <div class="line" style="width:52%;background:#ccc;"></div>
+          <div class="line sm" style="width:38%;background:#d0d0d0;"></div>
+        </div>
+        <div class="footer-bottom">
+          <div class="line sm" style="width:160px;background:#ccc;margin:0;"></div>
+          <div class="policy-links">
+            <div class="line sm" style="width:44px;background:#ccc;margin:0;"></div>
+            <div class="line sm" style="width:66px;background:#ccc;margin:0;"></div>
+            <div class="line sm" style="width:44px;background:#ccc;margin:0;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.wf-frame -->
+
+    <!-- ===========================
+      우측 주석 컬럼
+    =========================== -->
+    <div class="wf-side-right">
+
+      <div style="height:36px; display:flex; align-items:center;">
+        <div class="side-note">이벤트 링크 포함</div>
+      </div>
+
+      <div style="height:118px; display:flex; align-items:center;">
+        <div class="side-note">sticky 고정<br>스크롤 시<br>shadow 추가</div>
+      </div>
+
+      <div style="height:400px; display:flex; align-items:center;">
+        <div class="side-note">4초 자동슬라이드<br>터치/드래그<br>스와이프 지원</div>
+      </div>
+
+      <div style="height:244px; display:flex; align-items:center;">
+        <div class="side-note">탭 클릭 시<br>그리드 전환<br>4열 × 2행</div>
+      </div>
+
+      <div style="height:296px; display:flex; align-items:center;">
+        <div class="side-note">할인율·별점<br>표시<br>4열 그리드</div>
+      </div>
+
+      <div style="height:296px; display:flex; align-items:center;">
+        <div class="side-note">NEW 뱃지<br>4열 그리드</div>
+      </div>
+
+      <div style="height:630px; display:flex; align-items:center;">
+        <div class="side-note">어코디언<br>1~3위 강조<br>클릭 시 상세<br>펼침</div>
+      </div>
+
+      <div style="height:420px; display:flex; align-items:center;">
+        <div class="side-note">16:9 썸네일<br>2×2 그리드<br>board.html 연결</div>
+      </div>
+
+      <div style="height:92px; display:flex; align-items:center;">
+        <div class="side-note">파란 배경<br>3분할</div>
+      </div>
+
+      <div style="height:160px; display:flex; align-items:center;">
+        <div class="side-note">SNS 3개<br>회사정보<br>정책 링크</div>
+      </div>
+
+    </div>
+
+  </div><!-- /.wf-outer -->
+
+  <!-- 플로팅 버튼 (채팅 + TOP) -->
+  <div class="float-wrap">
+    <div class="float-btn">채팅</div>
+    <div class="float-btn">TOP</div>
+  </div>
+
+</body>
+</html>

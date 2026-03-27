@@ -1,0 +1,19 @@
+# 환경변수 (Supabase API Key 등 민감 정보)
+.env
+.env.local
+.env.*.local
+
+# 참고용 파일 (배포 불필요)
+ref/
+
+# OS 자동 생성 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 에디터 설정
+.vscode/
+.idea/
+
+# Node (향후 빌드 도구 사용 시)
+node_modules/

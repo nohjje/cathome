@@ -1,0 +1,268 @@
+/* ===========================
+   Base CSS - CSS 변수 및 공통 컴포넌트
+=========================== */
+
+/* Pretendard 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+/* ===========================
+   CSS 변수
+=========================== */
+:root {
+  /* 색상 */
+  --color-main: #FF6D00;
+  --color-main-2: #FFA35F;
+  --color-main-3: #FFD8BD;
+  --color-point: #00A8EA;
+  --color-point-2: #6DCDF1;
+  --color-point-3: #DAF1F7;
+  --color-text: #111111;
+  --color-text-sub: #555555;
+  --color-text-light: #888888;
+  --color-border: #E5E5E5;
+  --color-bg: #F8F8F8;
+  --color-white: #FFFFFF;
+
+  /* 폰트 */
+  --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-base: 18px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+
+  /* 간격 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 80px;
+
+  /* 레이아웃 */
+  --container-width: 1280px;
+  --header-height: 120px;
+
+  /* 그림자 */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.16);
+
+  /* 모서리 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* 트랜지션 */
+  --transition: 0.25s ease;
+}
+
+/* ===========================
+   기본 스타일
+=========================== */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-white);
+}
+
+/* ===========================
+   공통 컨테이너
+=========================== */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+/* ===========================
+   공통 섹션 타이틀
+=========================== */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-title h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.section-title .more-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition);
+}
+
+.section-title .more-link:hover {
+  color: var(--color-main);
+}
+
+/* ===========================
+   공통 버튼
+=========================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: #e56100;
+}
+
+.btn-primary:active {
+  background-color: #cc5600;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--color-main);
+  color: var(--color-main);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+
+/* ===========================
+   공통 뱃지
+=========================== */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
+.badge-main {
+  background-color: var(--color-main);
+  color: var(--color-white);
+}
+
+.badge-point {
+  background-color: var(--color-point);
+  color: var(--color-white);
+}
+
+.badge-sale {
+  background-color: #FF3B30;
+  color: var(--color-white);
+}
+
+/* ===========================
+   공통 상품 카드
+=========================== */
+.product-card {
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+.product-card:hover .product-card__img-wrap img {
+  transform: scale(1.04);
+}
+
+.product-card__img-wrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-bg);
+  aspect-ratio: 1 / 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.product-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.product-card__badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.product-card__info {
+  padding: 0 4px;
+}
+
+.product-card__name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.product-card__discount {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-main);
+}
+
+.product-card__original {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  text-decoration: line-through;
+}
+
+.product-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+}
+
+.product-card__rating .star {
+  color: #FFB800;
+}
+
+/* ===========================
+   fadeIn 애니메이션
+=========================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
