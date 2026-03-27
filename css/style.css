@@ -177,16 +177,15 @@
 
 .gnb-list li a {
   display: block;
-  padding: 14px 20px;
-  font-size: var(--font-size-sm);
+  padding: 14px 24px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--color-text);
   transition: color var(--transition);
   white-space: nowrap;
 }
 
-.gnb-list li a:hover,
-.gnb-list li a.active {
+.gnb-list li a:hover {
   color: var(--color-main);
 }
 
