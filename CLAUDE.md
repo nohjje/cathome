@@ -73,8 +73,8 @@
 ## 5. UI 구현 체크리스트
 
 ### 초기 설정
-- [ ] GitHub 저장소 생성 (수동 작업)
-- [ ] Git 초기화 및 GitHub 연결
+- [x] GitHub 저장소 생성 (수동 작업) (2026-03-27)
+- [x] Git 초기화 및 GitHub 연결 (2026-03-27)
 - [x] 폴더구조 및 기본 파일 생성 (img/css/js, index/login/board.html) (2026-03-27)
 - [x] CSS 변수 설정 (색상, 폰트, 간격) (2026-03-27)
 - [x] reset.css / base.css 작성 (2026-03-27)
