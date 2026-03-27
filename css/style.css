@@ -201,7 +201,7 @@
 
 .slider-track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slider-item {
@@ -233,8 +233,8 @@
 }
 
 .slider-btn svg {
-  width: 96px;
-  height: 96px;
+  width: 48px;
+  height: 48px;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 
@@ -856,8 +856,8 @@
   }
 
   .slider-btn svg {
-    width: 56px;
-    height: 56px;
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -884,7 +884,7 @@
   }
 
   .slider-btn svg {
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
   }
 }
